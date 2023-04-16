@@ -20,7 +20,7 @@
 <!--		Add cqrs core-->
 		<dependency>
 			<groupId>com.rates</groupId>
-			<artifactId>cqrs.core</artifactId>
+			<artifactId>rates.core</artifactId>
 			<version>1.0.0</version>
 		</dependency>
 		<dependency>

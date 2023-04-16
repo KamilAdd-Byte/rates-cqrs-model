@@ -4,8 +4,8 @@ import com.rates.account.cmd.api.command.OpenCurrencyRequestCommand;
 import com.rates.account.common.event.CloseAccountEvent;
 import com.rates.account.common.event.CurrencyExportOpenedEvent;
 import com.rates.account.common.event.CurrencyRequestOpenedEvent;
-import com.rates.cqrs.core.domain.AggregateID;
-import com.rates.cqrs.core.domain.AggregateRoot;
+import com.rates.core.domain.AggregateID;
+import com.rates.core.domain.AggregateRoot;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;

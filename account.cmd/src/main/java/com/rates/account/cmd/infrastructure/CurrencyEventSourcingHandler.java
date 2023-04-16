@@ -1,17 +1,20 @@
 package com.rates.account.cmd.infrastructure;
 
 import com.rates.account.cmd.domain.CurrencyRequestAggregate;
-import com.rates.cqrs.core.domain.AggregateRoot;
-import com.rates.cqrs.core.domain.AggregateVersion;
-import com.rates.cqrs.core.events.BaseEvent;
-import com.rates.cqrs.core.handlers.EventSourcingHandler;
-import com.rates.cqrs.core.infrastructures.EventStore;
+import com.rates.core.domain.AggregateRoot;
+import com.rates.core.domain.AggregateVersion;
+import com.rates.core.events.BaseEvent;
+import com.rates.core.handlers.EventSourcingHandler;
+import com.rates.core.infrastructures.EventStore;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class CurrencyEventSourcingHandler implements EventSourcingHandler<CurrencyRequestAggregate> {
 
     @Autowired

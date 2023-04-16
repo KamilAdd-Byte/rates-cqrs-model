@@ -1,6 +1,6 @@
 package com.rates.account.common.event;
 
-import com.rates.cqrs.core.events.BaseEvent;
+import com.rates.core.events.BaseEvent;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

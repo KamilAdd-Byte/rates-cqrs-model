@@ -1,6 +1,6 @@
 package com.rates.account.cmd.domain;
 
-import com.rates.cqrs.core.events.EventModel;
+import com.rates.core.events.EventModel;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

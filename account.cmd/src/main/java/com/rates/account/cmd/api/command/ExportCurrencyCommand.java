@@ -1,6 +1,6 @@
 package com.rates.account.cmd.api.command;
 
-import com.rates.cqrs.core.commands.BaseCommand;
+import com.rates.core.commands.BaseCommand;
 import lombok.Data;
 
 @Data

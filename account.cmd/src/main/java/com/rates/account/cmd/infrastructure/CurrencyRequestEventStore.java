@@ -2,11 +2,11 @@ package com.rates.account.cmd.infrastructure;
 
 import com.rates.account.cmd.domain.CurrencyRequestAggregate;
 import com.rates.account.cmd.domain.EventStoreRepository;
-import com.rates.cqrs.core.events.BaseEvent;
-import com.rates.cqrs.core.events.EventModel;
-import com.rates.cqrs.core.exceptions.AggregateNotFoundException;
-import com.rates.cqrs.core.exceptions.ConcurrencyException;
-import com.rates.cqrs.core.infrastructures.EventStore;
+import com.rates.core.events.BaseEvent;
+import com.rates.core.events.EventModel;
+import com.rates.core.exceptions.AggregateNotFoundException;
+import com.rates.core.exceptions.ConcurrencyException;
+import com.rates.core.infrastructures.EventStore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

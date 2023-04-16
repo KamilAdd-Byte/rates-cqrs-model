@@ -12,7 +12,7 @@
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
     <modules>
-        <module>../cqrs-es/cqrs.core</module>
+        <module>../../rates-core/rates.core</module>
         <module>account.cmd</module>
         <module>account.common</module>
         <module>account.query</module>

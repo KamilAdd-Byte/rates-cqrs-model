@@ -1,8 +1,8 @@
 package com.rates.account.cmd.infrastructure;
 
-import com.rates.cqrs.core.commands.BaseCommand;
-import com.rates.cqrs.core.commands.CommandHandlerMethod;
-import com.rates.cqrs.core.infrastructures.CommandDispatcher;
+import com.rates.core.commands.BaseCommand;
+import com.rates.core.commands.CommandHandlerMethod;
+import com.rates.core.infrastructures.CommandDispatcher;
 import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.LinkedList;
