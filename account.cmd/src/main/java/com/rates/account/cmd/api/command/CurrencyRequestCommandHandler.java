@@ -3,13 +3,11 @@ package com.rates.account.cmd.api.command;
 import com.rates.account.cmd.domain.CurrencyRequestAggregate;
 import com.rates.core.handlers.EventSourcingHandler;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CurrencyRequestCommandHandler implements CommandHandler {
     @Autowired
-    @Qualifier("currencySourcingHandler")
     private EventSourcingHandler<CurrencyRequestAggregate> eventSourcingHandler;
 
     @Override
