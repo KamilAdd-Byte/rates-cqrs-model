@@ -7,7 +7,6 @@ import com.rates.core.events.BaseEvent;
 import com.rates.core.handlers.EventSourcingHandler;
 import com.rates.core.infrastructures.EventStore;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
