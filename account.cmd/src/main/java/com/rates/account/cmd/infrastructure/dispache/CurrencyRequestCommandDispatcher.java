@@ -1,4 +1,4 @@
-package com.rates.account.cmd.infrastructure;
+package com.rates.account.cmd.infrastructure.dispache;
 
 import com.rates.core.commands.BaseCommand;
 import com.rates.core.commands.CommandHandlerMethod;

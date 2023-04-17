@@ -1,4 +1,4 @@
-package com.rates.account.cmd.infrastructure;
+package com.rates.account.cmd.infrastructure.handler;
 
 import com.rates.account.cmd.domain.CurrencyRequestAggregate;
 import com.rates.core.domain.AggregateRoot;
