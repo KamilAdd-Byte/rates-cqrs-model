@@ -5,9 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Component;
-
 import java.util.Arrays;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Component(value = "beanApiCounter")
@@ -20,13 +18,12 @@ public class BeanContextProvider {
 
     public ConfigurableApplicationContext displayBeans (String[] args) {
         applicationContext = SpringApplication.run(CommandApplication.class, args);
-        logger.warning(Level.SEVERE, "Beggining beans counter");
-        System.out.println("# BEANS: " + ctx.getBeanDefinitionCount());
-        String[] beanDefinitionNames = ctx.getBeanDefinitionNames();
+        logger.severe("Beginning beans counter");
+        System.out.println("# BEANS: " + applicationContext.getBeanDefinitionCount());
+        String[] beanDefinitionNames = applicationContext.getBeanDefinitionNames();
         Arrays.sort(beanDefinitionNames);
-
         Arrays.asList(beanDefinitionNames).forEach(System.out::println);
 
-        return
+        return applicationContext;
     }
 }
