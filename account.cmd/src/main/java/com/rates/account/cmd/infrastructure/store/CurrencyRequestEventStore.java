@@ -1,4 +1,4 @@
-package com.rates.account.cmd.infrastructure;
+package com.rates.account.cmd.infrastructure.store;
 
 import com.rates.account.cmd.domain.CurrencyRequestAggregate;
 import com.rates.account.cmd.domain.EventStoreRepository;
@@ -7,6 +7,7 @@ import com.rates.core.events.EventModel;
 import com.rates.core.exceptions.AggregateNotFoundException;
 import com.rates.core.exceptions.ConcurrencyException;
 import com.rates.core.infrastructures.EventStore;
+import com.rates.core.kafka.EventProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +15,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
+@Service(value = "currencyStore")
 public class CurrencyRequestEventStore implements EventStore {
+
+    @Autowired
+    private EventProducer producer;
 
     @Autowired
     private EventStoreRepository eventStoreRepository;
@@ -41,8 +45,9 @@ public class CurrencyRequestEventStore implements EventStore {
                     .build();
 
             var eventToSave = eventStoreRepository.save(eventModel);
-            if (eventToSave != null) {
-                // TODO: 14.04.2023 produce Kafka
+
+            if (!eventToSave.getId().isEmpty()) {
+                producer.produce(eventToSave.getClass().getSimpleName(), eventToSave.getEventData());
             }
         }
     }
