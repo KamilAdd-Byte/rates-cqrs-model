@@ -11,5 +11,5 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @SuperBuilder
 public class CurrencyExportOpenedEvent extends BaseEvent {
-    private String currency;
+    private String currencyCode;
 }

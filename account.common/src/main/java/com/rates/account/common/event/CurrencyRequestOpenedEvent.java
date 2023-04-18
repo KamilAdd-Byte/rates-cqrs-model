@@ -13,8 +13,9 @@ import java.util.Date;
 @AllArgsConstructor
 @SuperBuilder
 public class CurrencyRequestOpenedEvent extends BaseEvent {
-    private String currency;
+    private String userName;
+    private String currencyCode;
     private TableType tableType;
-    private Date createdDate;
-    private String date;
+    private Date currencyDate;
+    private Date creationDate;
 }
