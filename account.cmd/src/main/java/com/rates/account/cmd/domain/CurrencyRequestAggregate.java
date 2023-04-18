@@ -18,8 +18,9 @@ public class CurrencyRequestAggregate extends AggregateRoot {
         raiseEvent(CurrencyRequestOpenedEvent.builder()
                 .id(command.getId())
                 .tableType(command.getTableType())
-                .createdDate(new Date())
-                .date(command.getDate())
+                .creationDate(new Date())
+                .currencyDate(command.getDate())
+                .userName(command.getUsername())
                 .build());
     }
 
