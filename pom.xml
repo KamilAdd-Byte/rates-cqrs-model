@@ -17,5 +17,7 @@
         <module>account.cmd</module>
         <module>account.common</module>
         <module>account.query</module>
+<!--        this defines the path of the currency-module (currency.module), it can be different, it depends on where you have your directory -->
+        <module>../../CQRS-ES-CURRENCY/currency-module</module>
     </modules>
 </project>
