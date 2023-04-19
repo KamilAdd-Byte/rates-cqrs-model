@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -23,6 +24,6 @@ public class Currency extends BaseEntity {
     private String userName;
     private String currencyCode;
     private TableType tableType;
-    private Date currencyDate;
+    private LocalDate currencyDate;
     private Date creationDate;
 }

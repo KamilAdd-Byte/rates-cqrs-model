@@ -2,12 +2,14 @@ package com.rates.account.cmd.infrastructure.producer;
 
 import com.rates.core.events.BaseEvent;
 import com.rates.core.kafka.EventProducer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CurrencyEventProducer implements EventProducer {
 
+    @Autowired
     private KafkaTemplate<String, Object> kafkaTemplate;
 
     /**

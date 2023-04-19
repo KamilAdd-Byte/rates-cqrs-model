@@ -1,6 +1,6 @@
 package com.rates.account.cmd.infrastructure.store;
 
-import com.rates.account.cmd.domain.CurrencyRequestAggregate;
+import com.rates.account.cmd.domain.aggregate.CurrencyRequestAggregate;
 import com.rates.account.cmd.domain.EventStoreRepository;
 import com.rates.core.events.BaseEvent;
 import com.rates.core.events.EventModel;
@@ -10,7 +10,6 @@ import com.rates.core.infrastructures.EventStore;
 import com.rates.core.kafka.EventProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;

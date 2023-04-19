@@ -1,6 +1,6 @@
 package com.rates.account.cmd.infrastructure.handler;
 
-import com.rates.account.cmd.domain.CurrencyRequestAggregate;
+import com.rates.account.cmd.domain.aggregate.CurrencyRequestAggregate;
 import com.rates.core.domain.AggregateRoot;
 import com.rates.core.domain.AggregateVersion;
 import com.rates.core.events.BaseEvent;
@@ -32,7 +32,7 @@ public class CurrencyEventSourcingHandler implements EventSourcingHandler<Curren
         if (events != null && !events.isEmpty()) {
             currencyRequestAggregate.replayEvents(events);
             Optional<Integer> latestVersion = events.stream().map(BaseEvent::getVersion).max(Comparator.naturalOrder());
-            currencyRequestAggregate.setVersion(new AggregateVersion(latestVersion.get()));
+            currencyRequestAggregate.setAggregateVersion(new AggregateVersion(latestVersion.get()));
         }
 
         return currencyRequestAggregate;
