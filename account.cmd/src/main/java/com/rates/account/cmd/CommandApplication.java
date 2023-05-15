@@ -19,10 +19,11 @@ import com.rates.core.handlers.EventSourcingHandler;
 import com.rates.core.infrastructures.CommandDispatcher;
 import com.rates.core.infrastructures.EventStore;
 import com.rates.core.kafka.EventProducer;
-import com.rates.currency.external.webclient.CurrencyWebMapper;
-import com.rates.currency.external.webclient.impl.CurrencyWebMapperImpl;
-import com.rates.currency.scrapp.DocumentCreator;
-import com.rates.currency.scrapp.service.impl.CurrencyCodesServiceImpl;
+import com.rates.currency.nbp.mapper.CurrencyWebMapper;
+import com.rates.currency.nbp.mapper.impl.CurrencyWebMapperImpl;
+import com.rates.currency.scrapp.cantor.service.impl.RatesCantorServiceImpl;
+import com.rates.currency.scrapp.currency.service.CurrencyCodesService;
+import com.rates.currency.scrapp.utils.DocumentCreator;
 import com.rates.currency.service.CurrencyService;
 import com.rates.currency.service.impl.CurrencyServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,8 +45,8 @@ import javax.annotation.PostConstruct;
 		EventProducer.class, CurrencyEventProducer.class, CommandHandlerMethod.class,
 		CurrencyRequestController.class,
 		EventStore.class, EventStoreRepository.class, EventProducer.class, CurrencyEventSourcingHandler.class,
-		CurrencyService.class, CurrencyServiceImpl.class, CurrencyCodesServiceImpl.class, CurrencyWebMapper.class,
-		CurrencyWebMapperImpl.class, DocumentCreator.class
+		CurrencyService.class, CurrencyServiceImpl.class, CurrencyWebMapperImpl.class, CurrencyWebMapper.class,
+		CurrencyWebMapperImpl.class, DocumentCreator.class, CurrencyCodesService.class, RatesCantorServiceImpl.class
 })
 @EnableAutoConfiguration
 @SpringBootApplication

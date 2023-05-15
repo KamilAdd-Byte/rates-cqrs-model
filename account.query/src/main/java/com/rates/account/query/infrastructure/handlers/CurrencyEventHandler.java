@@ -8,6 +8,8 @@ import com.rates.account.query.domain.repository.CurrencyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+
 @Service
 public class CurrencyEventHandler implements EventHandler {
 
@@ -22,7 +24,7 @@ public class CurrencyEventHandler implements EventHandler {
         Currency toSave = Currency.builder()
                 .id(event.getId())
                 .currencyCode(event.getCurrencyCode())
-                .currencyDate(event.getCurrencyDate())
+                .currencyDate(LocalDate.parse(event.getCurrencyDate()))
                 .creationDate(event.getCreationDate())
                 .userName(event.getUserName())
                 .tableType(event.getTableType())

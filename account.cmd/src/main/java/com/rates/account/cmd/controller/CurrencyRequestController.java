@@ -4,15 +4,18 @@ import com.rates.account.cmd.api.command.CodesCurrenciesCommand;
 import com.rates.account.cmd.api.command.CurrencyRequestCommand;
 import com.rates.account.cmd.api.dto.CodesResponse;
 import com.rates.account.cmd.api.dto.CurrencyResponse;
+import com.rates.account.common.dto.BaseResponse;
 import com.rates.account.common.dto.MessageResponse;
 import com.rates.core.infrastructures.CommandDispatcher;
-
-import com.rates.currency.model.CurrencyDto;
+import com.rates.currency.api.model.websideline.WebSideLine;
+import com.rates.currency.nbp.dto.CurrencyDto;
 import com.rates.currency.service.CurrencyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.text.MessageFormat;
 import java.util.List;
 import java.util.UUID;
 import java.util.logging.Level;
@@ -31,12 +34,12 @@ public class CurrencyRequestController {
 
     @PostMapping(path = "/codes")
     public ResponseEntity<CodesResponse> getAllCode (@RequestBody CodesCurrenciesCommand command) {
-        List<String> allCodes = currencyService.getAllCodes();
+        List<WebSideLine> allCodes = currencyService.getAllCodes();
         commandDispatcher.send(command);
         return new ResponseEntity<>(new CodesResponse(new MessageResponse("Get currency successfully"),command.getId(), allCodes), HttpStatus.OK);
     }
 
-    @PostMapping(path = "lastTeen/{code}")
+    @PostMapping(path = "/lastTeen/{code}")
     public ResponseEntity<CurrencyResponse> getLastTenRatesCurrencyBy(@PathVariable("code") String code) {
         logger.log(Level.FINE, "Beginning currency get");
         String id = UUID.randomUUID().toString();
@@ -45,10 +48,22 @@ public class CurrencyRequestController {
     }
 
     @PostMapping(path = "/command")
-    public ResponseEntity<CurrencyResponse> getLastCurrencyBy(@RequestBody CurrencyRequestCommand command) {
+    public ResponseEntity<BaseResponse> getLastCurrencyBy(@RequestBody CurrencyRequestCommand command) {
         logger.log(Level.FINE, "Beginning currency get");
-        CurrencyDto toSave = currencyService.getCurrency(command.getCurrencyCode(),command.getTableType().name(),command.getDate());
-        commandDispatcher.send(command);
-        return new ResponseEntity<>(new CurrencyResponse(new MessageResponse("Get currency successfully"), command.getId(), toSave), HttpStatus.OK);
+        String id = UUID.randomUUID().toString();
+        command.setId(id);
+        try {
+            CurrencyDto toSave = currencyService.getCurrency(command.getCurrencyCode(),command.getTableType().name(),command.getDate());
+            commandDispatcher.send(command);
+            return new ResponseEntity<>(new CurrencyResponse(new MessageResponse("Get currency successfully"), command.getId(), toSave), HttpStatus.OK);
+        } catch (IllegalStateException e) {
+            logger.log(Level.WARNING, MessageFormat.format("Client made a bad request - {0}.", e.toString()));
+            return new ResponseEntity<>(new BaseResponse(new MessageResponse(e.toString())), HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            String errorMessage = MessageFormat.format("Error while processing request to get currency code {0}.", command.getCurrencyCode());
+            logger.log(Level.SEVERE, errorMessage, e);
+            return new ResponseEntity<>(new CurrencyResponse(new MessageResponse(errorMessage), id),HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
 }

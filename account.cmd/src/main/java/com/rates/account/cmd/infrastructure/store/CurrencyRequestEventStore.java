@@ -41,9 +41,10 @@ public class CurrencyRequestEventStore implements EventStore {
                     .aggregateType(CurrencyRequestAggregate.class.getTypeName())
                     .version(version)
                     .eventType(event.getClass().getTypeName())
+                    .eventData(event)
                     .build();
 
-            var eventToSave = eventStoreRepository.save(eventModel);
+            EventModel eventToSave = eventStoreRepository.save(eventModel);
 
             if (!eventToSave.getId().isEmpty()) {
                 producer.produce(eventToSave.getClass().getSimpleName(), eventToSave.getEventData());

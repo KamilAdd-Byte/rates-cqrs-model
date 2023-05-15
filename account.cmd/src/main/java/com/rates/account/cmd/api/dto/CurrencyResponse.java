@@ -2,7 +2,7 @@ package com.rates.account.cmd.api.dto;
 
 import com.rates.account.common.dto.BaseResponse;
 import com.rates.account.common.dto.MessageResponse;
-import com.rates.currency.model.CurrencyDto;
+import com.rates.currency.nbp.dto.CurrencyDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,5 +18,10 @@ public class CurrencyResponse extends BaseResponse {
         super(message);
         this.id = id;
         this.currencyDto = currencyDto;
+    }
+
+    public CurrencyResponse(MessageResponse message, String id) {
+        super(message);
+        this.id = id;
     }
 }
