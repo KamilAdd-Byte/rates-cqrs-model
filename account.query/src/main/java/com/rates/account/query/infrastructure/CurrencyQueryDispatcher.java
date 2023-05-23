@@ -4,12 +4,14 @@ import com.rates.core.domain.entity.BaseEntity;
 import com.rates.core.infrastructures.QueryDispatcher;
 import com.rates.core.queries.BaseQuery;
 import com.rates.core.queries.QueryHandlerMethod;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+@Service
 public class CurrencyQueryDispatcher implements QueryDispatcher {
 
     private final Map<Class<? extends BaseQuery>, List<QueryHandlerMethod>> routes = new HashMap<>();
