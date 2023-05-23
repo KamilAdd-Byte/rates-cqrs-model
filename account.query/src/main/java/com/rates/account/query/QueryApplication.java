@@ -4,6 +4,7 @@ import com.rates.account.query.api.queries.CurrencyQueryHandler;
 import com.rates.account.query.api.queries.FindAllCurrencyRequests;
 import com.rates.account.query.api.queries.FindCurrencyRequestByIdQuery;
 import com.rates.account.query.api.queries.QueryHandler;
+import com.rates.account.query.controller.CurrencyLookupController;
 import com.rates.account.query.infrastructure.CurrencyQueryDispatcher;
 import com.rates.core.infrastructures.QueryDispatcher;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import javax.annotation.PostConstruct;
 
 @ComponentScan(basePackageClasses = {
 		QueryDispatcher.class, CurrencyQueryDispatcher.class,
-		QueryHandler.class, CurrencyQueryHandler.class})
+		QueryHandler.class, CurrencyQueryHandler.class, CurrencyLookupController.class})
 @SpringBootApplication
 @EnableAutoConfiguration
 public class QueryApplication {
