@@ -6,10 +6,13 @@ import com.rates.core.handlers.EventSourcingHandler;
 import com.rates.core.infrastructures.EventStore;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 public class CodesEventSourcingHandler implements EventSourcingHandler<CodesCurrenciesEvent> {
 
     @Autowired
     private EventStore eventStore;
+
 
     /**
      * @param aggregateRoot
@@ -27,5 +30,13 @@ public class CodesEventSourcingHandler implements EventSourcingHandler<CodesCurr
     @Override
     public CodesCurrenciesEvent getById(String aggregateId) {
         return null;
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void republishEvents() {
+
     }
 }

@@ -5,6 +5,7 @@ import com.rates.account.cmd.api.handler.CommandHandler;
 import com.rates.account.cmd.api.handler.CurrencyRequestCommandHandler;
 import com.rates.account.cmd.api.info.BeanContextDisplayer;
 import com.rates.account.cmd.controller.CurrencyRequestController;
+import com.rates.account.cmd.controller.RestoreReadDbController;
 import com.rates.account.cmd.domain.aggregate.CurrencyRequestAggregate;
 import com.rates.account.cmd.domain.EventStoreRepository;
 import com.rates.account.cmd.infrastructure.dispacher.CodesEventCommandDispatcher;
@@ -43,7 +44,7 @@ import javax.annotation.PostConstruct;
 		CurrencyRequestCommandHandler.class, CommandHandler.class, CommandDispatcher.class,
 		CurrencyRequestAggregate.class, AggregateRoot.class,
 		EventProducer.class, CurrencyEventProducer.class, CommandHandlerMethod.class,
-		CurrencyRequestController.class,
+		CurrencyRequestController.class, RestoreReadDbController.class,
 		EventStore.class, EventStoreRepository.class, EventProducer.class, CurrencyEventSourcingHandler.class,
 		CurrencyService.class, CurrencyServiceImpl.class, CurrencyWebMapperImpl.class, CurrencyWebMapper.class,
 		CurrencyWebMapperImpl.class, DocumentCreator.class, CurrencyCodesService.class, RatesCantorServiceImpl.class
@@ -73,5 +74,7 @@ public class CommandApplication {
 		commandDispatcher.registerHandler(ExportCurrencyCommand.class, commandHandler::handle);
 		commandDispatcher.registerHandler(CloseAccountCommand.class, commandHandler::handle);
 		commandDispatcher.registerHandler(CodesCurrenciesCommand.class, commandHandler::handle);
+		commandDispatcher.registerHandler(RestoreReadDbCommand.class, commandHandler::handle);
+
 	}
 }

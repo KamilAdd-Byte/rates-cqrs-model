@@ -1,9 +1,6 @@
 package com.rates.account.cmd.api.handler;
 
-import com.rates.account.cmd.api.command.CloseAccountCommand;
-import com.rates.account.cmd.api.command.ExportCurrencyCommand;
-import com.rates.account.cmd.api.command.CurrencyRequestCommand;
-import com.rates.account.cmd.api.command.CodesCurrenciesCommand;
+import com.rates.account.cmd.api.command.*;
 import com.rates.account.cmd.domain.aggregate.CodesCurrenciesAggregate;
 import com.rates.account.cmd.domain.aggregate.CurrencyRequestAggregate;
 import com.rates.core.handlers.EventSourcingHandler;
@@ -42,5 +39,13 @@ public class CurrencyRequestCommandHandler implements CommandHandler {
         CurrencyRequestAggregate aggregate = eventSourcingHandler.getById(command.getId());
         aggregate.close();
         eventSourcingHandler.save(aggregate);
+    }
+
+    /**
+     * @param command
+     */
+    @Override
+    public void handle(RestoreReadDbCommand command) {
+        eventSourcingHandler.republishEvents();
     }
 }

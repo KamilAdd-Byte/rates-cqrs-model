@@ -6,6 +6,7 @@ import com.rates.core.domain.AggregateVersion;
 import com.rates.core.events.BaseEvent;
 import com.rates.core.handlers.EventSourcingHandler;
 import com.rates.core.infrastructures.EventStore;
+import com.rates.core.kafka.EventProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,9 @@ public class CurrencyEventSourcingHandler implements EventSourcingHandler<Curren
 
     @Autowired
     private EventStore eventStore;
+
+    @Autowired
+    private EventProducer producer;
 
     @Override
     public void save(AggregateRoot aggregateRoot) {
@@ -36,5 +40,22 @@ public class CurrencyEventSourcingHandler implements EventSourcingHandler<Curren
         }
 
         return currencyRequestAggregate;
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void republishEvents() {
+        List<String> eventStoreAggregateIds = eventStore.getAggregateIds();
+
+        for (String aggregateId : eventStoreAggregateIds) {
+            CurrencyRequestAggregate requestAggregate = getById(aggregateId);
+            if (requestAggregate == null) continue;
+            List<BaseEvent> events = eventStore.getEvents(aggregateId);
+            for (BaseEvent event : events) {
+                producer.produce(event.getClass().getSimpleName(), event);
+            }
+        }
     }
 }
